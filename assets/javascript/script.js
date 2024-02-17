@@ -42,7 +42,7 @@ function checkLeftItems(){
 }
 
 function removeTask (index) {
-    tasks.splice(tasks[index],1)
+    tasks.splice(index,1)
     
     showAllTask(tasks);
 }
@@ -51,9 +51,7 @@ function removeTask (index) {
 
 function clearCompleted () {
     removeRedBorder();
-    console.log(tasks)
     tasks = tasks.filter(a => a.completed == false)
-    console.log(tasks)
     localStorage.clear();
     setTimeout(addToLocalStorage, 100)
 
@@ -69,7 +67,6 @@ document.querySelector('#clearCompleted').addEventListener('click', clearComplet
 
 function showAllTask (currentTask) {
     document.querySelector('header').innerHTML = ``;
-    console.log(currentTask)
     for(let i in currentTask){
         if(currentTask[i].completed){
             document.querySelector('header').innerHTML += `
@@ -116,10 +113,11 @@ function showAllTask (currentTask) {
     document.querySelectorAll('.deletingSide').forEach(function(item){
         item.addEventListener('click', function(){
             for(let i in tasks){
-                console.log(tasks[i])
-                console.log(item.parentNode.querySelector('span').innerHTML)
+                
                 if(tasks[i].text == item.parentNode.querySelector('span').innerHTML.trim()){
-                    
+                    console.log(tasks[i].text)
+                    console.log(item.parentNode.querySelector('span').innerHTML.trim())
+                    console.log(i)
                     removeTask(i)
 
                     localStorage.clear();
@@ -140,13 +138,11 @@ function showAllTask (currentTask) {
                         item.parentNode.querySelector('span').style.textDecoration = "line-through"
 
                         tasks[i].completed = true
-                        console.log(tasks[i])
 
                     }else{
                         item.parentNode.querySelector('span').style.textDecoration = "none"
 
                         tasks[i].completed = false
-                        console.log(tasks[i])
                     }
 
                 }
@@ -205,13 +201,6 @@ document.querySelector('#completed').addEventListener('click', function(){
     showCompletedTasks()
 })
 
-
-
-function showInList () {
-    for(let i in tasks){
-        console.log(tasks[i])
-    }
-}
 
 
 
@@ -284,7 +273,6 @@ function getDataFromLocalStorage(){
             completed: detector
         }
         tasks.push(task)
-        console.log(typeof task.completed, task.completed)
     }
 
         setTimeout(function(){
