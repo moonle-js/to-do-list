@@ -1,6 +1,6 @@
 var tasks = [];
 var leftItems = 0;
-
+var month = ['January', "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
 function createNewTask (text) {
     var addOrNot = true;
@@ -14,9 +14,12 @@ function createNewTask (text) {
         document.querySelector('#shownSide').style.display = "flex"
     }
     if(addOrNot){
+        var tarix = new Date();
         var element = {
             text,
-            completed: false
+            completed: false,
+            addedDateDay: tarix.getDay(),
+            addedDateMonth: tarix.getMonth(),
         }
         tasks.push(element);
         showAllTask(tasks);
@@ -62,7 +65,7 @@ function clearCompleted () {
 
 document.querySelector('#clearCompleted').addEventListener('click', clearCompleted)
 
-
+//${tasks[i].text} (${tasks[i].addedDateDay}, ${month[tasks[i].addedDateMonth]})
 
 
 function showAllTask (currentTask) {
@@ -79,7 +82,7 @@ function showAllTask (currentTask) {
                 </div>
 
                 <div class="deletingSide">
-                    X
+                    x
                 </div>
             </div>
         `
@@ -100,6 +103,19 @@ function showAllTask (currentTask) {
 
     `
         }
+
+        document.querySelectorAll('.element').forEach(function(item){
+            item.addEventListener('mouseenter', function(){
+                this.querySelector('.deletingSide').style.display = "flex"
+            })
+        })
+
+        
+        document.querySelectorAll('.element').forEach(function(item){
+            item.addEventListener('mouseleave', function(){
+                this.querySelector('.deletingSide').style.display = "none"
+            })
+        })
 
         document.querySelectorAll('input[type="checkbox"]').forEach(function(item){
             if(item.checked){

@@ -63,6 +63,10 @@ main h1{
                 height: 60px;
                 padding: 10px;
             }
+            main div#addingSide #selectingAllBlock #addedElementValue:focus{
+                background-color: #99BC85;
+                box-shadow: 2px 2x 4px #99BC85;
+            }
 /* Shown side */
 
 #shownSide{
@@ -83,6 +87,7 @@ main h1{
        justify-content: flex-start; 
     }
         #shownSide header .element{
+            cursor: pointer;
             width: 100%;
             height: 50px;
             display: flex;
@@ -114,14 +119,18 @@ main h1{
                 #shownSide header .element .checkingSide span{
                     padding-left: 30px;
                 }
+
+            
             #shownSide header .element .deletingSide{
-                display: flex;
+                display: none;
+                transition: .3s all ease;
                 width: 10%;
                 min-width: 40px;
                 justify-content: center;
                 align-items: center;
                 cursor: pointer;
             }
+            
 
 
 
