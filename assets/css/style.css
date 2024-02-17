@@ -163,6 +163,7 @@ footer *{
         }
             footer ul #categories span{
                 cursor: pointer;
+                width: 25%;
                 height: 100%;
                 padding: 10px;
                 display: flex;
@@ -172,6 +173,7 @@ footer *{
 
         footer ul #clearCompleted{
             cursor: pointer;
+            text-align: center;
             width: 26%;
             list-style: none;
             display: flex;
